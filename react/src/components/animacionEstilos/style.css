@@ -1,0 +1,13 @@
+/* Estilos para el preloader */
+@keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loader {
+    border-top-color: rgb(23 101 64 / var(--tw-bg-opacity));
+    animation: spin 1.5s linear infinite;
+  }
+
+  
