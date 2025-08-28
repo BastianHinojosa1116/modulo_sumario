@@ -30,9 +30,10 @@ use App\Http\Controllers\Api\sumarios\IndexAsesorJuridico\IndexAsesorJuridicoCon
 use App\Http\Controllers\Api\sumarios\IndexFiscal\TramitarFiscalController;
 
 use App\Http\Controllers\Api\sumarios\IndexDispone\IndexDisponeController;
-use App\Http\Controllers\Api\sumarios\IndexDispone\TramitarDisponeController;
+
 
 use App\Http\Controllers\Api\sumarios\TramitaSumario\IndexTramitaController;
+use App\Http\Controllers\Api\sumarios\TramitaSumario\TramitarDisponeController;
 
 
 
@@ -74,6 +75,8 @@ Route::controller(UserController::class)->group(function () {
     Route::put('/user/{id}', 'update');
     Route::delete('/user/{id}', 'destroy');
     Route::post('/user/asignarDotacion/{id}', 'asignarDotacion');
+    Route::post('/user/validar-rut', 'existeAsesorJuridico');
+    Route::get('/user-data/{rut}',  'getUserData');
 });
 
 
@@ -123,6 +126,9 @@ Route::prefix('sumarios/tramita')->controller(IndexTramitaController::class)->gr
     Route::get('/{id}', 'show')->where('id', '[0-9]+'); // GET /api/sumarios/tramita/{id}
 });
 
+Route::prefix('sumarios')->controller(TramitarDisponeController::class)->group(function () {
+    Route::post('/tramitar-dispone', 'tramitarDispone');
+});
 
 
 

@@ -21,7 +21,7 @@ function IndexTramita() {
     return;
   }
 
-  navigate(`/sumarios/dispone/${sumario.id}`, {
+  navigate(`/sumarios/disponeTramitar/${sumario.id}`, {
     state: {
       sumarioSeleccionado: sumario
     }

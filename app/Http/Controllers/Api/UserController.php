@@ -49,6 +49,23 @@ class UserController extends Controller
         return $user;
     }
 
+    public function getUserData($rut)
+{
+    try {
+        $user = User::where('rut', strtoupper($rut))->first();
+
+        if ($user) {
+            return response()->json($user);
+        }
+
+        return response()->json(['error' => 'Usuario no encontrado'], 404);
+    } catch (\Exception $e) {
+        \Log::error('[GET_USER_DATA] Error al obtener usuario por RUT: ' . $e->getMessage());
+        return response()->json(['error' => 'Error interno'], 500);
+    }
+}
+
+
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -92,6 +109,43 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Perfil de usuario modificado exitosamente']);
     }
+
+
+    public function existeAsesorJuridico(Request $request)
+    {
+    try {
+        // Validación compatible con RUT chileno
+        $request->validate([
+            'rut' => 'required|regex:/^[0-9]{7,8}[0-9Kk]{1}$/'
+        ]);
+
+        // Normaliza el RUT a mayúsculas
+        $rut = strtoupper($request->rut);
+
+        // Busca el usuario por RUT y cargo
+        $user = User::where('rut', $rut)
+                    ->where('cargo', 'Asesor Jurídico')
+                    ->first();
+
+        if ($user) {
+            return response()->json([
+                'exists' => true,
+                'nombre' => $user->name
+            ]);
+        }
+
+        return response()->json(['exists' => false]);
+    } catch (\Exception $e) {
+        \Log::error('[VALIDAR_RUT] Error interno: ' . $e->getMessage());
+
+        return response()->json([
+            'error' => 'Error interno al validar el RUT',
+            'detalle' => $e->getMessage()
+        ], 500);
+    }
+    }
+
+
 
     public function destroy($id, Request $request)
     {

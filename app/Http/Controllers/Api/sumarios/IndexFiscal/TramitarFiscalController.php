@@ -17,7 +17,7 @@ public function tramitarFiscal(Request $request)
 {
     $request->validate([
         'id' => 'required|integer|exists:formulario_dispone_sumario,id',
-        'accion' => 'required|string',
+        'accion' => 'required|string', // Ya no está condicionado a valores específicos
         'documento' => 'required|file|mimes:pdf|max:10240'
     ]);
 

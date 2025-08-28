@@ -19,7 +19,7 @@ class IndexAsesorJuridicoController extends Controller
     ])
     ->whereHas('estados_form_sumarios.estados_sumario', function ($q) {
         $q->whereIn('estado_sumario', [
-            'Revisión asesor jurídico',
+            'Dispone revisión asesor jurídico',
             'Acepta prórroga revisión asesor jurídico',
             'Rechaza prórroga revisión asesor jurídico'
         ]);

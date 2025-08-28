@@ -21,7 +21,7 @@ class CambioFiscalController extends Controller
     ->whereIn('estado_sumario', [
         'Inhabilita', 'Orden de Sumario Cargada', 'Pendiente Orden Sumario','Prórroga cargo', 'Informe asesor jurídico', 'Notificación',
         'Oficio informe', 'Prórroga asesor jurídico', 'Prórroga dispone notificación',
-        'Prórroga corregir', 'Acepta prórroga corregir', 'Rechaza prórroga corregir',
+        'Prórroga corregir', 'Acepta prórroga corregir', 'Rechaza prórroga corregir', 'Acepta Inhabilidad',
         'Prórroga notificación resolución', 'Conforme', 'No conforme', 'Superior resolutor',
         'Oficio informe corregir', 'Pendiente aceptación de cargo', 'Aceptación de cargo',
         'Rechaza inhabilidad', 'Acepta prórroga cargo', 'Rechaza prórroga cargo',

@@ -90,6 +90,8 @@ import FormCambiarEstadoAsesorJuridico from "./components/sumariosComponent/ases
 import CambioFiscal from "./views/sumarios/cambioFiscal/cambioFiscal";
 import VerInformacionTramitaCambioFiscal from "./components/sumariosComponent/cambioFiscalComponent/VerInformacionSumarioCambioFiscal";
 
+
+
 import FormDisponeAsignarAccion from "./components/sumariosComponent/tramitaComponent/FormDisponeAsignarAccion";
 
 
@@ -172,13 +174,23 @@ const router = createBrowserRouter([
             {
                 path: '/sumarios/IndexTramita',
                 element: (
-                    <ProtectedRoute isAllowed={user?.cargo === "Administrador" || user?.cargo === "Tramita"}>
+                    <ProtectedRoute isAllowed={user?.cargo === "Administrador" || user?.cargo === "Tramita" || user?.cargo === "Dispone"}>
                         <IndexTramitaComponent />
                     </ProtectedRoute>
                 )
 
             },
+            
+            {
+                path: '/sumarios/disponeTramitar/:id', 
+                element: (
+                    <ProtectedRoute isAllowed={user?.cargo === "Administrador" || user?.cargo === "Dispone"}>
+                        <FormDisponeAsignarAccion />
+                    </ProtectedRoute>
 
+
+                )
+            },
 
 
             {

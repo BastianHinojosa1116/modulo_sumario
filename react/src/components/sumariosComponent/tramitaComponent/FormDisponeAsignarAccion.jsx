@@ -23,6 +23,10 @@ function FormDisponeAsignarAccion() {
     const [mostrarModalInformacion, setMostrarModalInformacion] = useState(false);
     const [openModalFiscal, setOpenModalFiscal] = useState(false);
     const [accionSeleccionada, setAccionSeleccionada] = useState('');
+    const [mostrarCalendario, setMostrarCalendario] = useState(false);
+    const [fechaProrroga, setFechaProrroga] = useState('');
+
+
 
 
     const obtenerSumarioActualizado = async () => {
@@ -93,51 +97,87 @@ function FormDisponeAsignarAccion() {
         setEstadoSumario(valor);
         setEstadoDocumentoSelect(true);
 
-        switch (valor) {
+       switch (valor) {
             case 'Aceptación de cargo':
                 setLabelDocumento('Cargar aceptación de cargo:');
                 setTituloModal("Aceptar cargo")
+                setMostrarModalInformacion(true);  
                 break;
             case 'Inhabilita':
                 setLabelDocumento('Cargar documento inhabilitación:');
                 setTituloModal("Inhabilitar Sumario")
-                break;
-            case 'Prórroga cargo':
-                setLabelDocumento('Cargar solicitud de prórroga:');
-                setTituloModal("Solicitar Prorroga Aceptación Cargo")
-                break;
+                setMostrarModalInformacion(true);  
+                break; 
+            case 'Acepta prórroga vista fiscal':
+                setLabelDocumento('Aceptar prórroga vista fiscal:');
+                setTituloModal("Aceptar Prórroga Vista Fiscal")
+                setMostrarModalInformacion(true);  
+            break;       
+            case 'Rechaza prórroga vista fiscal':
+                setLabelDocumento('Rechazar prórroga vista fiscal:');
+                setTituloModal("Rechazar Prórroga Vista Fiscal")
+                setMostrarModalInformacion(true);  
+            break;       
             case 'Prórroga dispone notificación':
                 setLabelDocumento('Cargar solicitud de prórroga:');
                 setTituloModal("Solicitar Prorroga notificación")
+                setMostrarModalInformacion(true);  
                 break;
             case 'Prórroga corregir':
                 setLabelDocumento('Cargar solicitud de prórroga:');
                 setTituloModal("Solicitar Prorroga corregir")
+                setMostrarModalInformacion(true);  
                 break;
-            case 'Oficio informe':
-                setLabelDocumento('Cargar oficio informe:');
-                setTituloModal("Enviar Oficio Informe")
+            case 'Vista fiscal':
+                setLabelDocumento('Cargar Vista fiscal:');
+                setTituloModal("Cargar Vista fiscal")
+                setMostrarModalInformacion(true);  
                 break;
             case 'Notificación':
                 setLabelDocumento('Cargar notificación:');
                 setTituloModal("Notificar Sumario")
+                setMostrarModalInformacion(true);  
                 break;
-            case 'Oficio informe corregir':
+            case 'Vista fiscal corregir':
                 setLabelDocumento('Cargar corrección:');
-                setTituloModal("Correguir oficio informe")
+                setTituloModal("Correguir Vista fiscal")
+                setMostrarModalInformacion(true);  
                 break;
-            case 'Notificación de resolución':
+            case 'Notificación del Dictámen':
                 setLabelDocumento('Cargar notificación:');
-                setTituloModal("Notificar la resolución")
+                setTituloModal("Notificar Dictámen")
+                setMostrarModalInformacion(true);  
                 break;
-            case 'Prórroga notificación resolución':
+            case 'Prórroga notificación Dictámen':
                 setLabelDocumento('Cargar aceptación de prórroga:');
-                setTituloModal("Solicitar prórroga para la notificación de la resolución")
+                setTituloModal("Solicitar prórroga para la notificación del Dictámen")
+                setMostrarModalInformacion(true);  
                 break;
             case 'Dispone revisión asesor jurídico':
-                setLabelDocumento('Cargar aceptación de prórroga:');
-                setTituloModal("Solicitar prórroga para la notificación de la resolución")
-                break;
+                setLabelDocumento('Dispone revisión asesor jurídico:');
+                setTituloModal("Cargar disponer revisión asesor jurídico")
+                setMostrarModalInformacion(true);  
+            break;
+            case 'Dispone corregir vista fiscal':
+                setLabelDocumento('Cargar dispone corregir vista fiscal');
+                setTituloModal("Dispone Corregir Vista Fiscal")
+                setMostrarModalInformacion(true);  
+            break;
+            case 'Dictámen':
+                setLabelDocumento('Cargar Dictámen:');
+                setTituloModal("Cargar Dictámen")    
+                setMostrarModalInformacion(true);            
+            break;
+            case 'Acepta Inhabilidad':
+                setLabelDocumento('Cargar Aceptación Inhabilidad:');
+                setTituloModal("Cargar Aceptación Inhabilidad")    
+                setMostrarModalInformacion(true);            
+            break;
+            case 'Rechaza Inhabilidad':
+                setLabelDocumento('Cargar Rechaza Inhabilidad:');
+                setTituloModal("Cargar Rechaza Inhabilidad")    
+                setMostrarModalInformacion(true);            
+            break;
             default:
                 setLabelDocumento('');
         }
@@ -229,7 +269,7 @@ function FormDisponeAsignarAccion() {
         }
     };
 
-     return (
+    return (
         <div className="p-4 bg-gray-100 border border-gray-400 rounded-lg">
             {mostrarEstados && (
 
@@ -321,7 +361,7 @@ function FormDisponeAsignarAccion() {
                                                                 type="button"
                                                                 onClick={() => {
                                                                     handleChangeSelectAccion({ target: { value: 'Aceptación de cargo' } });
-                                                                    setMostrarModalInformacion(true); // ← Aquí se abre el modal
+                                                                    set
                                                                 }}
 
 
@@ -333,7 +373,7 @@ function FormDisponeAsignarAccion() {
                                                                 type="button"
                                                                 onClick={() => {
                                                                     handleChangeSelectAccion({ target: { value: 'Inhabilita' } });
-                                                                    setMostrarModalInformacion(true);
+                                                                    
                                                                 }}
                                                                 className="bg-red-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
                                                             >
@@ -346,37 +386,7 @@ function FormDisponeAsignarAccion() {
                                                                 {!mostrarEstados ? 'Ocultar diligencias' : 'Mostrar diligencias'}
                                                             </button>
                                                         </>
-                                                    )}
-                                                {(sumarioSeleccionado.estado_sumario === 'Rechaza inhabilidad' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Aceptación de cargo' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Acepta prórroga cargo' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Rechaza prórroga cargo') && (
-                                                        <>
-
-                                                            <button
-                                                                type="button"
-                                                                onClick={() => {
-                                                                handleChangeSelectAccion({ target: { value: 'Oficio informe' } });
-                                                                setMostrarModalInformacion(true); 
-                                                                }}
-                                                                
-                                                                className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
-                                                            >
-                                                                Oficio informe
-                                                            </button>
-                                                            <button
-                                                                type="button"
-                                                                onClick={() => {
-                                                                handleChangeSelectAccion({ target: { value: 'Prórroga cargo' } });
-                                                                setMostrarModalInformacion(true);
-                                                                }}
-
-                                                                className="bg-red-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
-                                                            >
-                                                                Prórroga
-                                                            </button>
-                                                        </>
-                                                    )}
+                                                    )}                                              
                                                 {(sumarioSeleccionado.estado_sumario === 'Dispone notificación' ||
                                                     sumarioSeleccionado.estado_sumario === 'Acepta prórroga notificación' ||
                                                     sumarioSeleccionado.estado_sumario === 'Rechaza prórroga notificación') && (
@@ -401,10 +411,10 @@ function FormDisponeAsignarAccion() {
                                                     <>
                                                         <button
                                                             type="button"
-                                                            onClick={() => handleChangeSelectAccion({ target: { value: 'Oficio informe corregir' } })}
+                                                            onClick={() => handleChangeSelectAccion({ target: { value: 'Vista fiscal corregir' } })}
                                                             className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
                                                         >
-                                                            Corregir oficio informe
+                                                            Corregir Vista fiscal
                                                         </button>
                                                         <button
                                                             type="button"
@@ -416,21 +426,21 @@ function FormDisponeAsignarAccion() {
                                                     </>
                                                 )}
                                                 {(
-                                                    sumarioSeleccionado.estado_sumario === 'Dispone notificación resolución' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Rechaza prórroga notificación resolución' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Acepta prórroga notificación resolución'
+                                                    sumarioSeleccionado.estado_sumario === 'Dispone notificación Dictámen' ||
+                                                    sumarioSeleccionado.estado_sumario === 'Rechaza prórroga notificación Dictámen' ||
+                                                    sumarioSeleccionado.estado_sumario === 'Acepta prórroga notificación Dictámen'
                                                 ) && (
                                                         <>
                                                             <button
                                                                 type="button"
-                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Notificación de resolución' } })}
+                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Notificación de Dictámen' } })}
                                                                 className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
                                                             >
-                                                                Notificar resolución
+                                                                Notificar Dictámen
                                                             </button>
                                                             <button
                                                                 type="button"
-                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Prórroga notificación resolución' } })}
+                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Prórroga notificación Dictámen' } })}
                                                                 className="bg-red-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
                                                             >
                                                                 Prórroga
@@ -438,6 +448,84 @@ function FormDisponeAsignarAccion() {
                                                         </>
                                                     )
                                                 }
+                                                  {(
+                                                    sumarioSeleccionado.estado_sumario === 'Vista fiscal'                                                    
+                                                ) && (
+                                                        <>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Dispone revisión asesor jurídico' } })}
+                                                                className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
+                                                            >
+                                                                Dispone revisión asesor jurídico
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Dispone corregir vista fiscal' } })}
+                                                                className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
+                                                            >
+                                                                Dispone corregir vista fiscal
+                                                            </button>                                                           
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Dictámen' } })}
+                                                                className="bg-red-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
+                                                            >
+                                                                Dictámen
+                                                            </button>                                                         
+                                                        </>
+                                                    )
+                                                }
+                                                {(sumarioSeleccionado.estado_sumario === 'Prórroga vista fiscal') && (
+                                                        <>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                handleChangeSelectAccion({ target: { value:'Acepta prórroga vista fiscal'} });  
+                                                                setMostrarCalendario(true);         // Mostrar calendario                                                       
+                                                                }}                                                                
+                                                                className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
+                                                            >
+                                                                Acepta prórroga
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                handleChangeSelectAccion({target:{value:'Rechaza prórroga vista fiscal'}});   
+                                                                setMostrarCalendario(false); // Ocultar calendario                                                         
+                                                                }}
+                                                                className="bg-red-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
+                                                            >
+                                                                Rechaza prórroga
+                                                            </button>
+                                                            
+                                                        </>
+                                                    )}
+                                                     {(sumarioSeleccionado.estado_sumario === 'Inhabilita') && (
+                                                        <>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                handleChangeSelectAccion({ target: { value:'Acepta Inhabilidad'} });  
+                                                                                                                    
+                                                                }}                                                                
+                                                                className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
+                                                            >
+                                                                Acepta Inhabilidad
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                handleChangeSelectAccion({target:{value:'Rechaza Inhabilidad'}});   
+                                                                setMostrarCalendario(false); // Ocultar calendario                                                         
+                                                                }}
+                                                                className="bg-red-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
+                                                            >
+                                                                Rechaza Inhabilidad
+                                                            </button>
+                                                        </>
+                                                    )}
+                                                    
                                                 {mostrarModalInformacion && (
                                                     <ModalInformacionSumario
                                                         mostrarModalInformacion={mostrarModalInformacion}
@@ -451,6 +539,7 @@ function FormDisponeAsignarAccion() {
                                                         id={sumarioSeleccionado.id}
                                                     />
                                                 )}
+                                                
 
 
 
@@ -469,8 +558,11 @@ function FormDisponeAsignarAccion() {
                         </>
                     </div>
                 </motion.div>
+                
             )}
+            
             {/* esto es de prueba */}
+            
             {!mostrarEstados && (
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}

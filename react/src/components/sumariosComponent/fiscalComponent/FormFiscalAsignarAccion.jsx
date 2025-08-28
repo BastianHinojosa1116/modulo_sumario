@@ -101,9 +101,9 @@ function FormFiscalAsignarAccion() {
                 setLabelDocumento('Cargar documento inhabilitación:');
                 setTituloModal("Inhabilitar Sumario")
                 break;
-            case 'Prórroga oficio informe':
+            case 'Prórroga Vista fiscal':
                 setLabelDocumento('Cargar solicitud de solicitud prórroga:');
-                setTituloModal("Solicitar Prorroga Oficio informe")
+                setTituloModal("Solicitar Prorroga Vista fiscal")
                 break;
             case 'Prórroga dispone notificación':
                 setLabelDocumento('Cargar solicitud de prórroga:');
@@ -113,30 +113,38 @@ function FormFiscalAsignarAccion() {
                 setLabelDocumento('Cargar solicitud de prórroga:');
                 setTituloModal("Solicitar Prorroga corregir")
                 break;
-            case 'Oficio informe':
-                setLabelDocumento('Cargar oficio informe:');
-                setTituloModal("Cargar Oficio Informe")
+            case 'Vista fiscal':
+                setLabelDocumento('Cargar Vista fiscal:');
+                setTituloModal("Cargar Vista fiscal")
                 break;
             case 'Notificación':
                 setLabelDocumento('Cargar notificación:');
                 setTituloModal("Notificar Sumario")
                 break;
-            case 'Oficio informe corregir':
+            case 'Vista fiscal corregir':
                 setLabelDocumento('Cargar corrección:');
-                setTituloModal("Correguir oficio informe")
+                setTituloModal("Correguir Vista fiscal")
                 break;
-            case 'Notificación de resolución':
+            case 'Notificación del Dictámen':
                 setLabelDocumento('Cargar notificación:');
-                setTituloModal("Notificar la resolución")
+                setTituloModal("Notificar Dictámen")
                 break;
-            case 'Prórroga notificación resolución':
+            case 'Prórroga notificación Dictámen':
                 setLabelDocumento('Cargar aceptación de prórroga:');
-                setTituloModal("Solicitar prórroga para la notificación de la resolución")
+                setTituloModal("Solicitar prórroga para la notificación del Dictámen")
                 break;
             case 'Dispone revisión asesor jurídico':
                 setLabelDocumento('Cargar aceptación de prórroga:');
-                setTituloModal("Solicitar prórroga para la notificación de la resolución")
-                break;
+                setTituloModal("Solicitar prórroga para la notificación del Dictámen")
+            break;
+            case 'Dispone corregir vista fiscal':
+                setLabelDocumento('Cargar dispone corregir vista fiscal');
+                setTituloModal("Dispone Corregir Vista Fiscal")
+            break;
+            case 'Dictámen':
+                setLabelDocumento('Cargar Dictámen:');
+                setTituloModal("Cargar Dictámen")
+            break;
             default:
                 setLabelDocumento('');
         }
@@ -349,25 +357,25 @@ function FormFiscalAsignarAccion() {
                                                     )}
                                                 {(sumarioSeleccionado.estado_sumario === 'Rechaza inhabilidad' ||
                                                     sumarioSeleccionado.estado_sumario === 'Aceptación de cargo' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Acepta prórroga cargo' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Rechaza prórroga cargo') && (
+                                                    sumarioSeleccionado.estado_sumario === 'Acepta prórroga vista fiscal' ||
+                                                    sumarioSeleccionado.estado_sumario === 'Rechaza prórroga vista fiscal') && (
                                                         <>
 
                                                             <button
                                                                 type="button"
                                                                 onClick={() => {
-                                                                handleChangeSelectAccion({ target: { value: 'Oficio informe' } });
+                                                                handleChangeSelectAccion({ target: { value: 'Vista fiscal' } });
                                                                 setMostrarModalInformacion(true); 
                                                                 }}
                                                                 
                                                                 className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
                                                             >
-                                                                Oficio informe
+                                                                Vista fiscal
                                                             </button>
                                                             <button
                                                                 type="button"
                                                                 onClick={() => {
-                                                                handleChangeSelectAccion({ target: { value: 'Prórroga oficio informe' } });
+                                                                handleChangeSelectAccion({ target: { value: 'Prórroga vista fiscal' } });
                                                                 setMostrarModalInformacion(true);
                                                                 }}
 
@@ -401,10 +409,10 @@ function FormFiscalAsignarAccion() {
                                                     <>
                                                         <button
                                                             type="button"
-                                                            onClick={() => handleChangeSelectAccion({ target: { value: 'Oficio informe corregir' } })}
+                                                            onClick={() => handleChangeSelectAccion({ target: { value: 'Vista fiscal corregir' } })}
                                                             className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
                                                         >
-                                                            Corregir oficio informe
+                                                            Corregir Vista fiscal
                                                         </button>
                                                         <button
                                                             type="button"
@@ -416,21 +424,21 @@ function FormFiscalAsignarAccion() {
                                                     </>
                                                 )}
                                                 {(
-                                                    sumarioSeleccionado.estado_sumario === 'Dispone notificación resolución' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Rechaza prórroga notificación resolución' ||
-                                                    sumarioSeleccionado.estado_sumario === 'Acepta prórroga notificación resolución'
+                                                    sumarioSeleccionado.estado_sumario === 'Dispone notificación Dictámen' ||
+                                                    sumarioSeleccionado.estado_sumario === 'Rechaza prórroga notificación Dictámen' ||
+                                                    sumarioSeleccionado.estado_sumario === 'Acepta prórroga notificación Dictámen'
                                                 ) && (
                                                         <>
                                                             <button
                                                                 type="button"
-                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Notificación de resolución' } })}
+                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Notificación del Dictámen' } })}
                                                                 className="bg-primary-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-primary-700 transition-transform transform hover:scale-105"
                                                             >
-                                                                Notificar resolución
+                                                                Notificar Dictámen
                                                             </button>
                                                             <button
                                                                 type="button"
-                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Prórroga notificación resolución' } })}
+                                                                onClick={() => handleChangeSelectAccion({ target: { value: 'Prórroga notificación Dictámen' } })}
                                                                 className="bg-red-600 text-white px-4 py-1 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
                                                             >
                                                                 Prórroga
@@ -438,6 +446,7 @@ function FormFiscalAsignarAccion() {
                                                         </>
                                                     )
                                                 }
+                                              
                                                 {mostrarModalInformacion && (
                                                     <ModalInformacionSumario
                                                         mostrarModalInformacion={mostrarModalInformacion}

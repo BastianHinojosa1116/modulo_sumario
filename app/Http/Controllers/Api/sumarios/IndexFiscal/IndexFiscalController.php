@@ -22,7 +22,7 @@ class IndexFiscalController extends Controller
 
           ])
 
-    ->whereIn('estado_sumario', ['Orden de Sumario Cargada', 'Aceptación de cargo'])
+    ->whereIn('estado_sumario', ['Orden de Sumario Cargada', 'Aceptación de cargo', 'Rechaza prórroga vista fiscal','Acepta prórroga vista fiscal'])
     ->whereHas('user_form_sumarios', function ($q) use ($rut) {
         $q->where('rol', 'Fiscal')
           ->whereHas('user', function ($subQuery) use ($rut) {
